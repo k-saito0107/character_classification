@@ -76,7 +76,7 @@ def train(model, num_epochs,train_loader):
         log_epoch = {'epoch' : epoch, 'train_loss' : train_loss,'train_acc':train_acc }
         logs.append(log_epoch)
         df = pd.DataFrame(logs)
-        df.to_csv('log_out.csv')
+        df.to_csv('/kw_resources/character_classification/log_out.csv')
         
         if epoch % 5 == 0:
             print('---------------------------------------------------------------')
