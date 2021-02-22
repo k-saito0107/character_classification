@@ -73,7 +73,7 @@ def train(model, num_epochs,train_loader):
             print('epoch : {},  train_loss : {}, train_acc : {}, val_loss : {},val_acc : {}'.format(epoch, train_loss, train_acc, val_loss, val_acc))
 
         #ログを保存
-        log_epoch = {'epoch' : epoch, 'train_loss' : train_loss,'train_acc':train_acc }
+        log_epoch = {'epoch' : epoch, 'train_loss' : train_loss,'train_acc':train_acc, 'val_loss' : val_loss, 'val_acc':val_acc }
         logs.append(log_epoch)
         df = pd.DataFrame(logs)
         df.to_csv('/kw_resources/character_classification/log_out.csv')
