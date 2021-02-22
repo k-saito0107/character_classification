@@ -13,7 +13,7 @@ import pandas as pd
 import torch.optim as optim
 
 
-def train(model, num_epochs,train_loader):
+def train(model, num_epochs,train_loader, val_loader):
 
     if torch.cuda.is_available():
         device = 'cuda'

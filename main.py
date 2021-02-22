@@ -53,7 +53,7 @@ def main():
     model.fc = nn.Linear(in_features=512, out_features=44)
 
     num_epoch = 200
-    up_model = train(model, num_epoch, train_loader)
+    up_model = train(model, num_epoch, train_loader, val_loader)
 
 
 
