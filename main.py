@@ -48,7 +48,7 @@ def main():
 
     #model
     use_pretrained = False
-    model = models.resnet34(pretrained=use_pretrained)
+    model = models.resnet18(pretrained=use_pretrained)
     model.conv1 = nn.Conv2d(1, 64, kernel_size=7,stride=2, padding=3)
     model.fc = nn.Linear(in_features=512, out_features=44)
 
