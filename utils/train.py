@@ -47,7 +47,7 @@ def train(model, num_epochs,train_loader, val_loader):
         train_loss = running_loss/len(train_loader)
         train_acc=correct/total
         
-        if epoch % 5 == 0:
+        if epoch % 1 == 0:
             correct = 0 #正解したデータの総数
             total = 0 #予測したデータの総数
             running_loss = 0
@@ -65,7 +65,7 @@ def train(model, num_epochs,train_loader, val_loader):
                 #correct += torch.sum(predicted==v_label.data)
             print('Epoch {}/{}'.format(epoch,num_epochs))
             
-            val_loss = running_loss(len(val_loader))
+            val_loss = running_loss/(len(val_loader))
             val_acc = correct/total
             
             
