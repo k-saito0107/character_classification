@@ -77,13 +77,13 @@ def train(model, num_epochs,train_loader, val_loader):
             log_epoch = {'epoch' : epoch, 'train_loss' : train_loss,'train_acc':train_acc, 'val_loss' : val_loss, 'val_acc':val_acc }
             logs.append(log_epoch)
             df = pd.DataFrame(logs)
-            #df.to_csv('/kw_resources/character_classification/log_out.csv')
-            df.to_csv('log_out.csv')
+            df.to_csv('/kw_resources/character_classification/log_out.csv')
+            #df.to_csv('log_out.csv')
         
         if epoch % 5 == 0:
             print('---------------------------------------------------------------')
-            #torch.save(model.module.state_dict(),'/kw_resources/character_classification/weights/resnet_'+str(epoch)+'.pth')
-            torch.save(model.module.state_dict(),'./weights/resnet_'+str(epoch)+'.pth')
+            torch.save(model.module.state_dict(),'/kw_resources/character_classification/weights/resnet_'+str(epoch)+'.pth')
+            #torch.save(model.module.state_dict(),'./weights/resnet_'+str(epoch)+'.pth')
         
     
     return model
