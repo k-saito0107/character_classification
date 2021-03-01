@@ -23,7 +23,7 @@ def main():
     height = 112
     salt = [0.1, 0.4]
     papper = [0.01, 0.04]
-    batch_size = 12
+    batch_size = 8
 
     train_transform = transforms.Compose([
         Resize(width, height),
@@ -42,8 +42,8 @@ def main():
 
     train_dataset = ImageFolder('/kw_resources/character_classification/data/train_data', train_transform)
     val_dataset = ImageFolder('/kw_resources/character_classification/data/validation_data', val_transform)
-    train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True, num_workers=2)
-    val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=1,shuffle=False, num_workers=2)
+    train_loader=torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
+    val_loader=torch.utils.data.DataLoader(val_dataset,batch_size=1,shuffle=False)
 
 
     #model
