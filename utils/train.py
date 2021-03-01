@@ -30,9 +30,10 @@ def train(model, num_epochs,train_loader, val_loader):
         correct = 0 #正解したデータの総数
         total = 0 #予測したデータの総数
         running_loss = 0
+        model.train()
         for i, data in enumerate(train_loader, 0):
             img, label = data
-            model.train()
+            
             img , label = img.to(device), label.to(device)
             optimizer.zero_grad()
             outputs = model(img)
@@ -52,9 +53,10 @@ def train(model, num_epochs,train_loader, val_loader):
             correct = 0 #正解したデータの総数
             total = 0 #予測したデータの総数
             running_loss = 0
+            model.eval()
             for _, data in enumerate(val_loader, 0):
                 img, label = data
-                model.eval()
+                
                 img , label = img.to(device), label.to(device)
                 outputs = model(img)
                 loss = criterion(outputs, label)
