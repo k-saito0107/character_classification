@@ -19,11 +19,11 @@ from utils.train import train
 def main():
     mean = (0.5)
     std = (0.5)
-    width = 336
+    width = 224
     height = 112
     salt = [0.1, 0.4]
     papper = [0.01, 0.04]
-    batch_size = 8
+    batch_size = 4
 
     train_transform = transforms.Compose([
         Resize(width, height),
