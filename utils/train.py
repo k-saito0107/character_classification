@@ -38,7 +38,7 @@ def train(model, num_epochs,train_loader, val_loader):
             optimizer.zero_grad()
             outputs = model(img)
             loss = criterion(outputs, label)
-            running_loss += loss
+            running_loss += loss.item()
             loss.backward()
             optimizer.step()
             _,predicted = torch.max(outputs.data, 1)
@@ -60,7 +60,7 @@ def train(model, num_epochs,train_loader, val_loader):
                 img , label = img.to(device), label.to(device)
                 outputs = model(img)
                 loss = criterion(outputs, label)
-                running_loss += loss
+                running_loss += loss.item()
                 _,predicted = torch.max(outputs.data, 1)
                 total += label.size(0)
                 # 予測したデータ数を加算
