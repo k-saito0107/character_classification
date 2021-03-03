@@ -23,7 +23,7 @@ def main():
     height = 224
     salt = [0.1, 0.4]
     papper = [0.01, 0.04]
-    batch_size = 8
+    batch_size = 4
 
     train_transform = transforms.Compose([
         Resize(width, height),
