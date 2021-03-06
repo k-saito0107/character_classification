@@ -20,6 +20,17 @@ def train(model, num_epochs,train_loader, val_loader):
     else:
         device = 'cpu'
     print(device)
+    weights_path = '/kw_resources/character_classification/weights/resnet_30.pth'
+    log_path = '/kw_resources/character_classification/log_out.csv'
+    for epoch in range(1, num_epochs+1):
+        if epoch == 1:
+            if os.path.exists(weights_path):
+                checkpoint = torch.load(weights_path)
+                model.load_state_dict(checkpoint['model_state_dict'])
+                epoch = checkpoint['epoch']
+                logs = checkpoint['logs']
+                if epoch == num_epochs:
+                    break
     model.to(device)
     model = nn.DataParallel(model)
     criterion = nn.CrossEntropyLoss()
@@ -79,12 +90,17 @@ def train(model, num_epochs,train_loader, val_loader):
             log_epoch = {'epoch' : epoch, 'train_loss' : train_loss,'train_acc':train_acc, 'val_loss' : val_loss, 'val_acc':val_acc }
             logs.append(log_epoch)
             df = pd.DataFrame(logs)
-            df.to_csv('/kw_resources/character_classification/log_out.csv')
+            df.to_csv(log_path)
             #df.to_csv('log_out.csv')
         
         if epoch % 5 == 0:
             print('---------------------------------------------------------------')
-            torch.save(model.module.state_dict(),'/kw_resources/character_classification/weights/resnet_'+str(epoch)+'.pth')
+            torch.save({
+                'epoch':epoch,
+                'model_state_dict':model.module.state_dict(),
+                'logs':logs
+            }, weights_path)
+            #torch.save(model.module.state_dict(),weights_path)
             #torch.save(model.module.state_dict(),'./weights/resnet_'+str(epoch)+'.pth')
         
     
