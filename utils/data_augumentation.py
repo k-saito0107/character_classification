@@ -23,7 +23,7 @@ class Resize():
         img = self.pil2cv(img)
         img = img.astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img = cv2.bitwise_not(img)
+        #img = cv2.bitwise_not(img)
         img = cv2.resize(img, (self.width, self.height))
         return img
     
