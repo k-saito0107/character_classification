@@ -21,7 +21,7 @@ def train(model, num_epochs,train_loader, val_loader):
     else:
         device = 'cpu'
     print(device)
-    weights_path = '/kw_resources/character_classification/weights/resnet_30.pth'
+    weights_path = '/kw_resources/character_classification/weights/resnet_'+str(num_epochs)+'.pth'
     log_path = '/kw_resources/character_classification/log_out.csv'
     for epoch in range(1, num_epochs+1):
         if epoch == 1:
