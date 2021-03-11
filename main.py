@@ -21,9 +21,9 @@ def main():
     std = (0.5)
     width = 448
     height = 224
-    salt = [0.1, 0.4]
-    papper = [0.01, 0.04]
-    batch_size = 4
+    salt = [0.1, 0.5]
+    papper = [0.01, 0.03]
+    batch_size = 8
 
     train_transform = transforms.Compose([
         Resize(width, height),
@@ -50,9 +50,9 @@ def main():
     use_pretrained = False
     model = models.resnet34(pretrained=use_pretrained)
     model.conv1 = nn.Conv2d(1, 64, kernel_size=7,stride=2, padding=3)
-    model.fc = nn.Linear(in_features=512, out_features=44)
+    model.fc = nn.Linear(in_features=512, out_features=38)
 
-    num_epoch = 300
+    num_epoch = 200
     up_model = train(model, num_epoch, train_loader, val_loader)
 
 
